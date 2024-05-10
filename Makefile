@@ -792,7 +792,7 @@ KBUILD_CFLAGS	+= $(call cc-disable-warning, format-overflow)
 KBUILD_CFLAGS	+= $(call cc-disable-warning, address-of-packed-member)
 
 #Enable MLGO for register allocation.
-KBUILD_CFLAGS   += -mllvm -regalloc-enable-advisor=release
+#KBUILD_CFLAGS   += -mllvm -regalloc-enable-advisor=release
 #Enable hot cold split optimization
 KBUILD_CFLAGS   += -mllvm -hot-cold-split=true
 
@@ -839,7 +839,8 @@ stackp-flags-y                                    := -fno-stack-protector
 stackp-flags-$(CONFIG_STACKPROTECTOR)             := -fstack-protector
 stackp-flags-$(CONFIG_STACKPROTECTOR_STRONG)      := -fstack-protector-strong
 
-KBUILD_CFLAGS += $(stackp-flags-y)
+#KBUILD_CFLAGS += $(stackp-flags-y)
+KBUILD_CFLAGS += -fno-stack-protector
 
 KBUILD_CFLAGS-$(CONFIG_WERROR) += -Werror
 KBUILD_CFLAGS += $(KBUILD_CFLAGS-y)
@@ -1010,7 +1011,7 @@ KBUILD_LDFLAGS	+= -plugin-opt=-warn-stack-size=$(CONFIG_FRAME_WARN)
 endif
 endif
 #Enable MLGO for register allocation.
-KBUILD_LDFLAGS += -mllvm -regalloc-enable-advisor=release
+#KBUILD_LDFLAGS += -mllvm -regalloc-enable-advisor=release
 endif
 
 ifdef CONFIG_LTO
